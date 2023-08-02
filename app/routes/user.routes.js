@@ -24,7 +24,7 @@ module.exports = (app) => {
     router.get("/:utilisateurId", utilisateurs.findOne);
   
     // Mettre à jour un utilisateur avec son id
-   // router.put("/:utilisateurId", utilisateurs.update);
+    router.put("/:utilisateurId", utilisateurs.update);
   
     // Supprimer un utilisateur avec son id
     router.delete("/:utilisateurId", utilisateurs.delete);

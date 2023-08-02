@@ -56,7 +56,7 @@ const User = function(user) {
   
   User.findByUsernameAndPwd = (prenom, pwd, result) => {
     sql.query(
-      "SELECT * FROM utilisateur WHERE prenom = ? and motDePasse=?",
+      "SELECT * FROM utilisateur WHERE prenom = ? and motDePasse=? and statut=1",
       [prenom,pwd],
       (err, res) => {
         if (err) {
@@ -104,8 +104,8 @@ const User = function(user) {
   
   User.updateById = (utilisateurId, user, result) => {
     sql.query(
-      "UPDATE Utilisateur SET nom = ?, prenom = ?, email = ?, role = ?,  WHERE utilisateurId = ?",
-      [user.nom, user.prenom, user.email, user.motDePasse, user.role, utilisateurId],
+      "UPDATE Utilisateur SET nom = ?, prenom = ?, email = ?, motDePasse=?,  WHERE utilisateurId = ?",
+      [user.nom, user.prenom, user.email, user.motDePasse, utilisateurId],
       (err, res) => {
         if (err) {
           console.log("error: ", err);

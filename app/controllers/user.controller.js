@@ -11,10 +11,10 @@ exports.addUser = (req, res) => {
 
   // Create an Utilisateur
   const user = new User({
-    nom: req.body.name,
-    prenom: req.body.username,
+    nom: req.body.nom,
+    prenom: req.body.prenom,
     email: req.body.email,
-    motDePasse: req.body.password,
+    motDePasse: req.body.motDePasse,
     role: "utilisateur",
     statut: 0,
   });
@@ -89,19 +89,27 @@ exports.update = (req, res) => {
       message: "Content can not be empty!"
     });
   }
+  const utilisateurId = req.params.utilisateurId;
 
-  User.updateById(
-    req.params.utilisateurId,
-    new User(req.body),
-    (err, data) => {
+  // Create an Utilisateur
+  const user = new User({
+    nom: req.body.name,
+    prenom: req.body.username,
+    email: req.body.email,
+    motDePasse: req.body.password,
+    role: "utilisateur",
+    statut: 0,
+  });
+
+  User.updateById( utilisateurId, new User(req.body), (err, data) => {
       if (err) {
         if (err.kind === "pas trouvé") {
           res.status(404).send({
-            message: `Not found Utilisateur with id ${req.params.utilisateurId}.`
+            message: `Not found Utilisateur with id ${utilisateurId}.`
           });
         } else {
           res.status(500).send({
-            message: "Error updating Utilisateur with id " + req.params.utilisateurId
+            message: "Error updating Utilisateur with id " + utilisateurId
           });
         }
       } else {
@@ -151,6 +159,7 @@ exports.login = (req, res) => {
               }
             } else {
               res.send(data);
+             
             }
     });
 };
