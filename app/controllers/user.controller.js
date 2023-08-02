@@ -93,15 +93,15 @@ exports.update = (req, res) => {
 
   // Create an Utilisateur
   const user = new User({
-    nom: req.body.name,
-    prenom: req.body.username,
+    nom: req.body.nom,
+    prenom: req.body.prenom,
     email: req.body.email,
-    motDePasse: req.body.password,
+    motDePasse: req.body.motDePasse,
     role: "utilisateur",
     statut: 0,
   });
 
-  User.updateById( utilisateurId, new User(req.body), (err, data) => {
+  User.updateById( utilisateurId, user(req.body), (err, data) => {
       if (err) {
         if (err.kind === "pas trouvé") {
           res.status(404).send({

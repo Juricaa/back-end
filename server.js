@@ -21,6 +21,7 @@ app.get("/", (req, res) => {
 
 //require("./app/routes/tutorial.routes.js")(app);
 require("./app/routes/user.routes.js")(app);
+require("./app/routes/information.routes.js")(app);
 
 // set port, listen for requests
 const PORT = 8081;

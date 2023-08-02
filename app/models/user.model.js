@@ -104,8 +104,8 @@ const User = function(user) {
   
   User.updateById = (utilisateurId, user, result) => {
     sql.query(
-      "UPDATE Utilisateur SET nom = ?, prenom = ?, email = ?, motDePasse=?,  WHERE utilisateurId = ?",
-      [user.nom, user.prenom, user.email, user.motDePasse, utilisateurId],
+      "UPDATE Utilisateur SET nom = ?, prenom = ?, email = ?  WHERE utilisateurId = ? and motDePasse=?",
+      [user.nom, user.prenom, user.email, utilisateurId, user.motDePasse],
       (err, res) => {
         if (err) {
           console.log("error: ", err);

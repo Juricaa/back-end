@@ -122,7 +122,18 @@ Enseignant.updateById = (matricule, enseignant, result) => {
     });
 };
 
-
+Enseignant.removeAll = result => {
+  sql.query("DELETE FROM enseignant", (err, res) => {
+    if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+          }
+          
+          console.log(`supprimer ${res.affectedRows} enseignant`);
+          result(null, res);
+        });
+};
 
 Enseignant.getPrestation = (result)=> {
 
